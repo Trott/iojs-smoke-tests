@@ -1,0 +1,5 @@
+apt-get update
+apt-get install -y build-essential python git
+adduser --gecos smoke --home /smoke/ --disabled-login smoke
+echo "smoke:smoke" | chpasswd
+adduser smoke sudo
