@@ -1,4 +1,4 @@
-git clone git@github.com:nodeca/js-yaml.git
+git clone https://github.com/nodeca/js-yaml.git
 cd js-yaml
 npm install --cache-min=9999
 npm test
