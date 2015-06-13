@@ -34,7 +34,7 @@ run_test() {
     iojs_smoke/$ref \
     /bin/su smoke -c \
     "cd /smoke/ && $file_oneline" | tee test_out.${test} \
-    || echo "FAILED $test ********************************" | tee test_out.${test}
+    || echo "FAILED $test ********************************" 1>&2 | tee test_out.${test}
 }
 
 
@@ -56,4 +56,11 @@ chmod 777 $npm_cache # awkward but ..?
 
 for test in `ls ./tests/`; do
   run_test $test
+done
+
+for test in `ls ./tests/`; do
+  echo "${test} -- \`tail test_out.${test}\` ------------------------------------------------------------------------------"
+  echo
+  tail test_out.${test}
+  echo
 done
