@@ -4,10 +4,40 @@
 
 Currently testing:
 
+* async
+* bluebird
+* browserify
+* coffeescript
+* commander
+* express
+* glob
+* graceful-fs
+* grunt
+* gulp
+* js-yaml
 * leveldown
 * levelup
+* mkdirp
 * npm
+* q
 * request
+* shelljs
+* superagent
+* through2
+
+## Usage
+
+```
+$ ./run <git-ref>
+```
+
+Where `git-ref` is a commit, a tag, or a branch.
+
+You can also run individual tests by specifying their script name:
+
+```
+$ ./run v2.3.0 async.sh
+```
 
 ## License & Copyright
 

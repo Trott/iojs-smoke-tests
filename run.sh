@@ -1,6 +1,7 @@
 #!/bin/bash
 
 ref=$1
+reqtest=$2
 docker_base="ubuntu:15.04"
 nproc=$(nproc)
 npm_cache="${HOME}/.npm-iojs-smoke-tests"
@@ -55,12 +56,16 @@ mkdir -p $npm_cache
 chmod 777 $npm_cache # awkward but ..?
 
 for test in `ls ./tests/`; do
-  run_test $test
+  if [ "X$reqtest" == "X" ] || [ "X$reqtest" == "X$test" ]; then
+    run_test $test
+  fi
 done
 
 for test in `ls ./tests/`; do
-  echo "${test} -- \`tail test_out.${test}\` ------------------------------------------------------------------------------"
-  echo
-  tail test_out.${test}
-  echo
+  if [ "X$reqtest" == "X" ] || [ "X$reqtest" == "X$test" ]; then
+    echo "${test} -- \`tail test_out.${test}\` ------------------------------------------------------------------------------"
+    echo
+    tail test_out.${test}
+    echo
+  fi
 done
