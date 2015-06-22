@@ -30,7 +30,7 @@ run_test() {
   echo "Executing $test test..."
   file_to_oneline ./tests/$test
   docker run \
-    -i --rm \
+    -it --rm \
     -v ${npm_cache}:/smoke/.npm/ \
     iojs_smoke/$ref \
     /bin/su smoke -c \
