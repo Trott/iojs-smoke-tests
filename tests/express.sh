@@ -1,4 +1,4 @@
-git clone https://github.com/strongloop/express.git
+git clone https://github.com/strongloop/express.git --depth 1
 cd express
-npm install --cache-min=9999
+npm install --cache-min=Infinity
 npm test
