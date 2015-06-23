@@ -34,10 +34,8 @@ run_test() {
     -v ${npm_cache}:/smoke/.npm/ \
     iojs_smoke/$ref \
     /bin/su smoke -c \
-    'cd /smoke/ && '"$file_oneline"'; echo $?' \
+    'cd /smoke/ && '"$file_oneline"'; echo -e "\n\n$?"' \
     | tee test_out.${test}
-  local status=$?
-  echo "status $status"
 }
 
 
