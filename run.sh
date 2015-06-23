@@ -34,8 +34,10 @@ run_test() {
     -v ${npm_cache}:/smoke/.npm/ \
     iojs_smoke/$ref \
     /bin/su smoke -c \
-    "cd /smoke/ && $file_oneline" | tee test_out.${test} \
-    || echo "FAILED $test ********************************" 1>&2 | tee test_out.${test}
+    'cd /smoke/ && '"$file_oneline"'; echo $?' \
+    | tee test_out.${test}
+  local status=$?
+  echo "status $status"
 }
 
 
@@ -63,9 +65,12 @@ done
 
 for test in `ls ./tests/`; do
   if [ "X$reqtest" == "X" ] || [ "X$reqtest" == "X$test" ]; then
-    echo "${test} -- \`tail test_out.${test}\` ------------------------------------------------------------------------------"
-    echo
-    tail test_out.${test}
-    echo
+    status=$(tail -1 test_out.${test} | sed 's/\s//mg')
+    echo -en "${test}: "
+    if [ "X$status" == "X0" ]; then
+      echo -e "\033[1m\033[32mPASS\033[39m\033[22m"
+    else
+      echo -e "\033[1m\033[31mFAIL\033[39m\033[22m (exit code: ${status})"
+    fi
   fi
 done
