@@ -3,7 +3,6 @@
 ref=$1
 reqtest=$2
 docker_base="ubuntu:15.04"
-nproc=$(nproc)
 npm_cache="${HOME}/.npm-iojs-smoke-tests"
 
 . ./lib/setup_container.sh

@@ -2,7 +2,7 @@ git clone https://github.com/nodejs/io.js.git /usr/src/iojs/ --reference /usr/sr
 cd /usr/src/iojs/
 ./configure
 git checkout REF
-make -j`nproc`
+make -j`node -e 'var os = require("os");console.log(os.cpus().length)'`
 make install
 make clean
 su smoke -c 'npm config set nodedir=/usr/src/iojs && npm config set loglevel=http && npm config set spin=false'
