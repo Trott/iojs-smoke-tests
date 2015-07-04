@@ -28,7 +28,7 @@ Currently testing:
 ## Usage
 
 ```
-$ ./run <git-ref>
+$ ./run.sh <git-ref>
 ```
 
 Where `git-ref` is a commit, a tag, or a branch.
@@ -36,7 +36,7 @@ Where `git-ref` is a commit, a tag, or a branch.
 You can also run individual tests by specifying their script name:
 
 ```
-$ ./run v2.3.0 async.sh
+$ ./run.sh v2.3.0 async.sh
 ```
 
 ## License & Copyright
